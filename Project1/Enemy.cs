@@ -24,13 +24,11 @@ public partial class Enemy : Entity
         Stunned
     }
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         base._Ready();
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
         base._Process(delta);
@@ -41,7 +39,7 @@ public partial class Enemy : Entity
         Behavior((float)delta);
     }
 
-    //Should be run in _PhysicsProcess
+    //Should be run in _PhysicsProcess, handles enemy behavior
     protected virtual void Behavior(float delta)
     {
         if (_patterns != null)
@@ -112,6 +110,7 @@ public partial class Enemy : Entity
         _behaviorState = behaviorState;
     }
 
+    //Handles movement based on MovementType
     private void Move()
     {
         if (_canMove)
@@ -185,6 +184,7 @@ public partial class Enemy : Entity
         MoveAndSlide();
     }
 
+    //Handles initial rotation based on AimType
     private void Aim()
     {
         switch (_currPattern.AimData.Aim)
@@ -215,6 +215,7 @@ public partial class Enemy : Entity
         }
     }
 
+    //Handles continous rotation based on TargetType
     private void Target()
     {
         TargetTypeData target = _currPattern.TargetData;
@@ -280,6 +281,7 @@ public partial class Enemy : Entity
         else return Mathf.MoveToward(from, toInverse, delta);
     }
 
+    //Handles logic for choosing which next pattern to execute
     private void ChoosePattern()
     {
         if (_currPattern != null && _currPattern.DoRepeat)
@@ -340,6 +342,7 @@ public partial class Enemy : Entity
         }
     }
 
+    //Handles executing the next sequence in a pattern including spawning of any attacks
     public async void NextPatternSequence()
     {
         if (!_currPattern.IsLastSequence)

@@ -9,7 +9,7 @@ public partial class Attack : Area2D, IDamage
     private float damageMultiplier = 1f;
 
     [Export]
-    private bool _singleHit = true;
+    private bool _singleHit = true; //Whether to allow the attack to hit the same entity multiple times
 
     [Export]
     private float _delayTime = 0f;
@@ -42,7 +42,6 @@ public partial class Attack : Area2D, IDamage
     
 
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         _telegraph = GetNode<Telegraph>("Telegraph");
@@ -71,6 +70,7 @@ public partial class Attack : Area2D, IDamage
 
     public override void _PhysicsProcess(double delta)
     {
+        //Handle damaging of same entity multiple times if singleHit is false
         if (!_singleHit && _intersectedEntities.Count > 0)
         {
             _tickCounter++;
@@ -113,6 +113,7 @@ public partial class Attack : Area2D, IDamage
         QueueFree();
     }
 
+    //Updates the collider shape based on the visual telegraph shape
     public void UpdateCollisionShape()
     {
         if(_telegraph == null) _telegraph = GetNode<Telegraph>("Telegraph");

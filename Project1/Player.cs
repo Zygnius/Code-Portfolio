@@ -96,6 +96,7 @@ public partial class Player : Entity
         //Rotate character to face mouse
         Rotation = GlobalPosition.AngleToPoint(GetGlobalMousePosition());
 
+        //Allow ability 1 to repeat on button hold
         if (Input.IsActionPressed("player_ability1"))
         {
             CastAbility(0);
@@ -384,6 +385,7 @@ public partial class Player : Entity
         //TODO
     }
 
+    //Leveling curve
     private int CalcExpForLevel()
     {
         return 5 * Mathf.RoundToInt(Mathf.Pow(1.2f, _level));

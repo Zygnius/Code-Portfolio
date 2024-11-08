@@ -55,6 +55,7 @@ public partial class Entity : CharacterBody2D
         EmitSignal(SignalName.HealthChanged);
     }
 
+    //Calculates damage taken based on defensive stats, then calls ChangeHP
     public void TakeDamage(float amount)
     {
         if (_isInvincible) return;

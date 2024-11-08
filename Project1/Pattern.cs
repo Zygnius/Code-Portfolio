@@ -155,6 +155,7 @@ public partial class Pattern : Resource
         _currSequence++;
     }
 
+    //Updates current weight based on given hp percentage
     public void UpdateWeight(float currHPPercentage)
     {
         if (_currHpThreshold >= _hpThresholds.Count) return;

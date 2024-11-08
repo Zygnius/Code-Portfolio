@@ -345,7 +345,7 @@ public partial class Telegraph : Node2D
 
     //Consider using facing section of https://docs.godotengine.org/en/3.1/tutorials/math/vector_math.html to detect collisions using circle collision shape for cones (and 2 circles for arcs)
 
-    //draw functions taken and modified from https://docs.godotengine.org/en/4.0/tutorials/2d/custom_drawing_in_2d.html
+    //draw functions based on and modified from https://docs.godotengine.org/en/4.0/tutorials/2d/custom_drawing_in_2d.html
     private void DrawCone(float radius, float angle, Color color, bool filled = true, float width = -1, bool antialiased = false)
     {
         Vector2[] pointsArc = CreateConeShape(radius, angle);
